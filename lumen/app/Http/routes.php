@@ -12,31 +12,29 @@
 */
 
 $app->get('/', function () use ($app) {
-    
-echo phpinfo();
-    //return $app->version();
+    return $app->version();
 });
 
 $app->group([
 	'prefix' => 'api/clients',
 	'namespace' => 'App\Http\Controllers'
 ], function () use ($app) {
-	$app->get('', 'ClientsControllers@index');
-	$app->get('{id}', 'ClientsControllers@show');
-	$app->post('', 'ClientsControllers@store');
-	$app->put('{id}','ClientsControllers@update');
-	$app->delete('{id}', 'ClientsControllers@destroy');
+	$app->get('', 'ClientsController@index');
+	$app->get('{id}', 'ClientsController@show');
+	$app->post('', 'ClientsController@store');
+	$app->put('{id}','ClientsController@update');
+	$app->delete('{id}', 'ClientsController@destroy');
 });
 
 $app->group([
-	'prefix' => 'api/clients/{client}/addresses',
-	'namespace' => 'App\Http\Controllers'
-	], function () use ($app) {
-	$app->get('','AddressesController@index');
-	$app->get('{id}', 'AddressesController@show');
-	$app->post('', 'AddressesController@store');
-	$app->put('{id}','AddressesController@update');
-	$app->delete('{id}','AddressesController@destroy');
+    'prefix' => 'api/clients/{client}/addresses',
+    'namespace' => 'App\Http\Controllers'
+], function () use ($app) {
+    $app->get('', 'AddressesController@index');
+    $app->get('{id}', 'AddressesController@show');
+    $app->post('', 'AddressesController@store');
+    $app->put('{id}', 'AddressesController@update');
+    $app->delete('{id}', 'AddressesController@destroy');
 });
 
 /*

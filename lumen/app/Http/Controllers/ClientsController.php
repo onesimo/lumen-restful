@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ClientsController extends Controller
 {
 	public function index()
-	{
+	{	
 		return son_response()->make(Client::all());
 	}
 
@@ -20,6 +20,7 @@ class ClientsController extends Controller
 			
 		}
 		return son_response()->make($client);
+		return $client;
 	}
 
 	public function store(Request $request)
@@ -30,7 +31,7 @@ class ClientsController extends Controller
 			'phone'=> 'required'
 		]);
 
-		$client = Client::create($request->all());
+		$client = Client::create($request->all()); 
 		return son_response()->make($client,201);
 	}
 
@@ -49,7 +50,7 @@ class ClientsController extends Controller
 
 		$client->fill($request->all());
 		$client->save();
-
+ 
 		return son_response()->make($client,200);
 	}
 
@@ -59,7 +60,7 @@ class ClientsController extends Controller
 			throw new ModelNotFoundException("Client requisitado não existe");
 		}
 
-		$client->delete();
+		$client->delete(); 
 		return son_response()->make("",204);
 	}
 }
