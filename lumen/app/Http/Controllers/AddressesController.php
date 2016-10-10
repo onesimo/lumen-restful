@@ -85,7 +85,7 @@ class AddressesController extends Controller
 			throw new ModelNotFoundException("Endereço requisitado não existe");
 			
 		}
-		$address = Address::where('client_id', $clientId)->where('id')->get()->first();
+		$address = Address::where('client_id', $clientId)->where('id', $id)->get()->first();
 
 		if (!$address) {
 			throw new ModelNotFoundException("Endereço requisitado não existe");
